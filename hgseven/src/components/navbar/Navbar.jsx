@@ -1,5 +1,4 @@
-import React, {useState} from "react";
-
+import React, { useState } from "react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,44 +19,71 @@ const Navbar = () => {
   };
 
   return (
-    <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50">
-      <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center h-18">
-        <a href="#"
-        className="text-3xl font-bold text-[#1a9df1] tracking-tight">HG7 Labs</a>
-        <ul className="hidden md:flex md:items-center space-x-8">
+    <header className="fixed top-0 w-full bg-white/90 backdrop-blur-sm border-b border-border shadow-sm z-40">
+      <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
+        <a
+          href="#"
+          className="font-heading text-3xl font-bold text-[var(--brand-primary)] tracking-tight hover:opacity-80 transition-opacity duration-300"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
+          HG7 Labs
+        </a>
+        <ul className="hidden md:flex space-x-8">
           {navItems.map((item) => (
             <li key={item.id}>
-              <button
+              <button key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-gray-700 hover:text-[#1a9df1] font-medium transition-colors duration-300 relative-group"
+                className="font-body font-medium text-foreground hover:text-[var(--brand-primary)] transition-all duration-300 relative group"
+                style={{ fontFamily: 'var(--font-body)' }}
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#1a9df1] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-[#2c7ee9] transition-all duration-300 group-hover:w-full"></span>
               </button>
             </li>
           ))}
         </ul>
 
-        <button className="md:hidden text-gray-700"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        <button
+          className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-            <svg className="w-6 h-6" fill="none"
-            stroke="currentcolor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+          <div className="w-6 h-6 relative">
+            <span
+              className={`block absolute h-0.5 w-6 bg-foreground transform transition duration-300 ease-in-out ${
+                isMenuOpen ? "rotate-45 translate-y-2" : "translate-y-0"
+              }`}
+              style={{ top: "6px" }}
+            />
+            <span
+              className={`block absolute h-0.5 w-6 bg-foreground transform transition duration-300 ease-in-out ${
+                isMenuOpen ? "opacity-0" : "opacity-100"
+              }`}
+              style={{ top: "12px" }}
+            />
+            <span
+              className={`block absolute h-0.5 w-6 bg-foreground transform transition duration-300 ease-in-out ${
+                isMenuOpen ? "-rotate-45 -translate-y-2" : "translate-y-0"
+              }`}
+              style={{ top: "18px" }}
+            />
+          </div>
         </button>
       </nav>
 
       {/* Mobile Nav */}
       {isMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200">
-            <div className="px-6 py-4 space-y-3">
-                {navItems.map((item) => (
-                    <button key={item.id} onClick={() => scrollToSection(item.id)} className="block w-full text-left text-gray-700 hover:text-[#1a9df1] font-medium py-2">
-                        {item.name}
-                    </button>
-                ))}
-            </div>
+          <div className="px-6 py-4 space-y-3">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="block w-full text-left text-gray-700 hover:text-[#1a9df1] font-medium py-2"
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </header>
