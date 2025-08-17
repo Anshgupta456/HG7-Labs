@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "../../assets/logo.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,9 +24,9 @@ const Navbar = () => {
       <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
         <a
           href="#"
-          className="font-heading text-3xl font-bold text-[var(--brand-primary)] tracking-tight hover:opacity-80 transition-opacity duration-300"
-          style={{ fontFamily: "var(--font-heading)" }}
+          className="font-['Playfair_Display'] text-3xl font-bold text-primary tracking-tight hover:opacity-80 transition-opacity duration-300"
         >
+          <img src={logo} alt="HG7 Labs" className="w-40 h-35 inline-block" />
           HG7 Labs
         </a>
         <ul className="hidden md:flex space-x-8">
